@@ -75,6 +75,8 @@ Order Completed : 1  Status: COMPLETED
 
 
 ## 🧩 Project Structure
+
+```bash
 my-saga-project/
 │
 ├── common/              # Shared DTOs & utilities
@@ -82,7 +84,7 @@ my-saga-project/
 ├── payment/             # Payment microservice
 ├── stock/               # Stock microservice
 └── docker-compose.yml   # Kafka + Zookeeper + Postgres
-
+```
 
 🐳 Docker Setup
 1️⃣ Start infrastructure (Kafka, Zookeeper, DBs)
