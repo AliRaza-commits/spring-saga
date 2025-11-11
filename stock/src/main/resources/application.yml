@@ -1,0 +1,27 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: stock-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    streams:
+      application-id: stock-stream-app
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: true
+    consumer:
+      group-id: stock-service-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+  datasource:
+      url: jdbc:postgresql://localhost:5445/stockdb
+      username: stock
+      password: secret
+  jpa:
+    hibernate:
+      ddl-auto: update

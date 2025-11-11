@@ -1,0 +1,30 @@
+server:
+  port: 8081
+spring:
+  json:
+    trusted:
+      packages: "*"
+  application:
+    name: payment-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    streams:
+      application-id: payment-steam-app
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: true
+    consumer:
+      group-id: payment-service-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+  datasource:
+    url: jdbc:postgresql://localhost:5444/paymentdb
+    username: payment
+    password: secret
+  jpa:
+    hibernate:
+      ddl-auto: update
